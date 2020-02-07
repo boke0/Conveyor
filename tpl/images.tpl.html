@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/asset?type=plugin&filename=style.css">
+    <title>画像を管理</title>
+</head>
+<body> 
+    <header>
+        <h2>アップロードされた画像</h2>
+        <a href="javascript:upload('{{image}}')">
+            画像をアップロード
+        </a>
+    </header>
+    <dialog id="delete_dialog">
+        <h1 id="delete_path"></h1>
+        <p class="description">この操作のあと、復元することはできません</p>
+        <form id="delete_actions" method="POST" action="/admin/delete">
+            <input type="hidden" name="path" id="delete_path_field">
+            {{csrf_field()}}
+            <button class="cancel" type="button">キャンセル</button>
+            <button>削除</button>
+        </form>
+    </dialog>
+    <dialog id="upload_dialog">
+        <h1>画像をアップロード</h1>
+        <p class="description">この操作のあと、復元することはできません</p>
+        <form id="upload_actions" method="POST" enctype="multipart/form-data" action="/admin/post">
+            <input type="files" name="image" accept="image/*">
+            {{csrf_field()}}
+            <button class="cancel" type="button">キャンセル</button>
+            <button>削除</button>
+        </form>
+    </dialog>
+    <main>
+        <div id="images">
+            {% if images|length>0 %}
+            {% for image in images %}
+                <div class="item page">
+                    <img src="/asset/uploads?filename={{image}}">
+                    <div class="action">
+                        <a href="/admin/uploads?filename={{image}}">
+                            URLをコピー
+                        </a>
+                        <button onclick="del('{{image}}')">
+                            画像を削除
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+            <div class="zero_list">
+                まだ画像がアップロードされていません
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    <script>
+        const upload_dialog=document.querySelector("#upload_dialog");
+        const delete_dialog=document.querySelector("#delete_dialog");
+        function del(path){
+            document.querySelector("#delete_path_field").value=path;
+            delete_dialog.showModal();
+        }
+        function upload(path){
+            upload_dialog.showModal();
+        }
+        documetn.querySelector("#upload_actions").onsubmit=()=>{
+            e.preventDefault();
+            fetch("/admin/post",{
+                method:"POST",
+                body:this
+            }).then(res=>{
+                return res.text();
+            }).then((res)=>{
+                const dom=document.createElement("div");
+                dom.innerHTML=`
+                    <div class="item page">
+                        <img src="/asset/uploads?filename=${res}">
+                        <div class="action">
+                            <a href="/admin/uploads?filename=${res}">
+                                URLをコピー
+                            </a>
+                            <button onclick="del('${res}')">
+                                画像を削除
+                            </button>
+                        </div>
+                    </div>`;
+                document.querySelector("#images").prepend(dom);
+            });
+            return false;
+        }
+        document.querySelector(".cancel").forEach(e=>{
+            e.onclick=function(){
+                this.parentNode.close();
+            }
+        });
+    </script>
+</body>
+</html>

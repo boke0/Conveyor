@@ -1,0 +1,30 @@
+header {
+  height: 48px;
+  line-height: 48px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+}
+header h2 {
+  margin: 0;
+  height: 48px;
+  font-size: 1rem;
+  padding: 0 16px;
+}
+header a {
+  display: block;
+  height: 48px;
+  padding: 0 16px;
+}
+
+main {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-gap: 16px;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNhc3Mvc3R5bGUuc2NzcyIsInNhc3Mvc3R5bGUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksWUFBQTtFQUNBLGlCQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EseUJBQUE7VUFBQSw4QkFBQTtFQUNBLHlCQUFBO1VBQUEsbUJBQUE7QUNDSjtBREFJO0VBQ0ksU0FBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0VBQ0EsZUFBQTtBQ0VSO0FEQUk7RUFDSSxjQUFBO0VBQ0EsWUFBQTtFQUNBLGVBQUE7QUNFUjs7QURDQTtFQUNJLGFBQUE7RUFDQSxhQUFBO0VBQ0EsNERBQUE7RUFDQSxjQUFBO0FDRUoiLCJmaWxlIjoic3R5bGUuY3NzIn0= */

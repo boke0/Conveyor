@@ -1,0 +1,24 @@
+header{
+    height:48px;
+    line-height:48px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    h2{
+        margin:0;
+        height:48px;
+        font-size:1rem;
+        padding:0 16px;
+    }
+    a{
+        display:block;
+        height:48px;
+        padding:0 16px;
+    }
+}
+main{
+    padding: 24px;
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+    grid-gap:16px;
+}
