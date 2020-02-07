@@ -12,6 +12,7 @@ class UploadEndpoint extends Endpoint{
         if(Session::get("vt_uid")==NULL){
             return $this->createResponse()->withHeader("Location","/admin/login");
         }
+        if(!is_dir(__DIR__."/../../uploads")) mkdir(__DIR__."/../../uploads");
         $mime_types = array(
             'image/png'=>'png', 
             'image/jpeg'=>'jpe', 
