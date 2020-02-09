@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="/asset?type=plugin&filename=style.css">
+    <link rel="stylesheet" href="/asset?plugin=Conveyor&filename=style.css">
     <title>画像を管理</title>
 </head>
 <body> 
@@ -15,7 +15,7 @@
     <dialog id="delete_dialog">
         <h1 id="delete_path"></h1>
         <p class="description">この操作のあと、復元することはできません</p>
-        <form id="delete_actions" method="POST" action="/admin/delete">
+        <form id="delete_actions" method="POST" action="/admin/image/delete">
             <input type="hidden" name="path" id="delete_path_field">
             {{csrf_field()}}
             <button class="cancel" type="button">キャンセル</button>
@@ -25,11 +25,11 @@
     <dialog id="upload_dialog">
         <h1>画像をアップロード</h1>
         <p class="description">この操作のあと、復元することはできません</p>
-        <form id="upload_actions" method="POST" enctype="multipart/form-data" action="/admin/post">
-            <input type="files" name="image" accept="image/*">
+        <form id="upload_actions" method="POST" enctype="multipart/form-data" action="/admin/image/post">
+            <input type="file" name="image" accept="image/*">
             {{csrf_field()}}
             <button class="cancel" type="button">キャンセル</button>
-            <button>削除</button>
+            <button>アップロード</button>
         </form>
     </dialog>
     <main>
@@ -65,11 +65,11 @@
         function upload(path){
             upload_dialog.showModal();
         }
-        documetn.querySelector("#upload_actions").onsubmit=()=>{
+        document.querySelector("#upload_actions").onsubmit=function(e){
             e.preventDefault();
-            fetch("/admin/post",{
+            fetch("/admin/image/post",{
                 method:"POST",
-                body:this
+                body:new FormData(this)
             }).then(res=>{
                 return res.text();
             }).then((res)=>{
@@ -90,9 +90,9 @@
             });
             return false;
         }
-        document.querySelector(".cancel").forEach(e=>{
-            e.onclick=function(){
-                this.parentNode.close();
+        document.querySelectorAll(".cancel").forEach(function(e){
+            e.onclick=()=>{
+                e.parentNode.parentNode.close();
             }
         });
     </script>

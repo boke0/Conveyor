@@ -2,9 +2,10 @@
 
 namespace Boke0\Mechanism\Plugins\Conveyor;
 use \Boke0\Mechanism\Api\Endpoint;
+use \Boke0\Mechanism\Plugins\VacuumTube\Session;
 
 /**
- * @path /asset/delete
+ * @path /admin/image/delete
  * @method POST
  */
 class DeleteEndpoint extends Endpoint{
@@ -13,7 +14,7 @@ class DeleteEndpoint extends Endpoint{
             return $this->createResponse(401,"Unauthorized");
         }
         $post=$req->getParsedBody();
-        unlink(__DIR__."/../../uploads/{$post["filename"]}");
+        unlink(__DIR__."/../../uploads/{$post["path"]}");
         return $this->createResponse(200,"OK");
     }
 }

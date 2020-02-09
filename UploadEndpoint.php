@@ -2,9 +2,10 @@
 
 namespace Boke0\Mechanism\Plugins\Conveyor;
 use \Boke0\Mechanism\Api\Endpoint;
+use \Boke0\Mechanism\Plugins\VacuumTube\Session;
 
 /**
- * @path /asset/post
+ * @path /admin/image/post
  * @method POST
  */
 class UploadEndpoint extends Endpoint{

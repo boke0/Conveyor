@@ -1,27 +1,53 @@
+body {
+  margin: 0;
+}
+
 header {
   height: 48px;
   line-height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #fff;
+  background: #444;
 }
 header h2 {
   margin: 0;
   height: 48px;
   font-size: 1rem;
   padding: 0 16px;
+  font-size: 1rem;
 }
 header a {
   display: block;
   height: 48px;
   padding: 0 16px;
+  font-size: 0.9rem;
+  color: #fff;
 }
 
 main {
   padding: 24px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 16px;
+}
+main .item img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+}
+main .item .action a, main .item .action button {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 8px;
+  background: #777;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 2px;
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */
