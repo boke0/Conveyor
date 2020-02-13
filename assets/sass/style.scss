@@ -26,9 +26,11 @@ header{
 }
 main{
     padding: 24px;
-    display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
-    grid-gap:16px;
+    #images{
+        display:grid;
+        grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+        grid-gap:16px;
+    }
     .item{
         img{
             width:100%;
@@ -36,16 +38,26 @@ main{
             object-fit:contain;
         }
         .action{
-            a,button{
+            padding-top:8px;
+            input{
+                display:block;
+                width:100%;
+                box-sizing:border-box;
                 height:24px;
                 line-height:24px;
-                padding:0 8px;
-                background:#777;
+                border:none;
+            }
+            a,button{
+                height:36px;
+                line-height:36px;
+                padding:0 10px;
+                background:#333;
                 display:inline-block;
                 text-decoration:none;
                 color:#fff;
                 font-size:0.8rem;
-                border-radius:2px;
+                font-weight:bold;
+                border-radius:4px;
                 border:none;
             }
         }

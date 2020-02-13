@@ -36,17 +36,18 @@
         <div id="images">
             {% if images|length>0 %}
             {% for image in images %}
-                <div class="item page">
-                    <img src="/asset/uploads?filename={{image}}">
-                    <div class="action">
-                        <a href="/admin/uploads?filename={{image}}">
-                            URLをコピー
-                        </a>
-                        <button onclick="del('{{image}}')">
-                            画像を削除
-                        </button>
-                    </div>
+            <div class="item page">
+                <img src="/asset/uploads?filename={{image}}">
+                <div class="action">
+                    <input type="text" value="{{uri.scheme}}://{{uri.host}}/asset/uploads?filename={{image}}">
+                    <button onclick="console.log(this.parentNode.querySelector('input'));this.parentNode.querySelector('input').select();document.execCommand('copy')">
+                        URLをコピー
+                    </button>
+                    <button onclick="del('{{image}}')">
+                        画像を削除
+                    </button>
                 </div>
+            </div>
             {% endfor %}
             {% else %}
             <div class="zero_list">
@@ -78,9 +79,10 @@
                     <div class="item page">
                         <img src="/asset/uploads?filename=${res}">
                         <div class="action">
-                            <a href="/admin/uploads?filename=${res}">
+                            <input type="text" value="{{url.scheme}}://{{url.host}}/asset/uploads?filename=${res}">
+                            <button onclick="this.parentNode.querySelector('input').select();document.execCommand('copy')">
                                 URLをコピー
-                            </a>
+                            </button>
                             <button onclick="del('${res}')">
                                 画像を削除
                             </button>
@@ -88,6 +90,7 @@
                     </div>`;
                 document.querySelector("#images").prepend(dom);
             });
+            this.parentNode.close();
             return false;
         }
         document.querySelectorAll(".cancel").forEach(function(e){

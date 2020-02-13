@@ -18,7 +18,8 @@ class ImagesEndpoint extends Endpoint{
             return  true;
         });
         return $this->twig("images.tpl.html",[
-            "images"=>$images
+            "images"=>$images,
+            "uri"=>$req->getUri(),
         ]);
     }
 }
